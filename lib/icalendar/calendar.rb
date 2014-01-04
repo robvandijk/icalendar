@@ -26,15 +26,23 @@ module Icalendar
     end
 
     def print_component
-      "BEGIN:#{@name.upcase}\r\n" +
-      "VERSION:#{version}\r\n" +
-
-      # Then the properties
-      print_properties(@properties.select { |k,v| k != 'version' }) +
+      print_component_start +
 
       # sub components
       yield +
 
+      print_component_end
+    end
+
+    def print_component_start
+      "BEGIN:#{@name.upcase}\r\n" +
+      "VERSION:#{version}\r\n" +
+
+      # Then the properties
+      print_properties(@properties.select { |k,v| k != 'version' })
+    end
+
+    def print_component_end
       # End of this component
       "END:#{@name.upcase}\r\n"
     end

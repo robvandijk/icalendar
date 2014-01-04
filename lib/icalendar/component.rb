@@ -114,17 +114,33 @@ module Icalendar
       end
     end
 
+    def to_ical_start
+      print_component_start
+    end
+
+    def to_ical_end
+      print_component_end
+    end
+
     # Print this icalendar component
     def print_component
-      # Begin a new component
-      "BEGIN:#{@name.upcase}\r\n" +
-
-      # Then the properties
-      print_properties +
+      print_component_start +
 
       # sub components
       yield +
 
+      print_component_end
+    end
+
+    def print_component_start
+      # Begin a new component
+      "BEGIN:#{@name.upcase}\r\n" +
+
+      # Then the properties
+      print_properties
+    end
+
+    def print_component_end
       # End of this component
       "END:#{@name.upcase}\r\n"
     end
