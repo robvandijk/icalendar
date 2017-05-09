@@ -35,13 +35,7 @@ class String
   end
 end
 
-class Fixnum
-  def to_ical
-    "#{self}"
-  end
-end
-
-class Bignum
+class Integer
   def to_ical
     "#{self}"
   end

@@ -39,7 +39,7 @@ EOS
       # String
       description "desc"
 
-      # Fixnum
+      # Integer
       sequence 2
 
       # Float by way of Geo class
